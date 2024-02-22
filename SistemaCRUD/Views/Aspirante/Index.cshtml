@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Aspirante>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <a asp-action="Create" class="btn btn-outline-primary btn-sm">Crear Nuevo</a>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Correo electrónico</th>
+                                    <th>Número de teléfono</th>
+                                    <th>Lugar de nacimiento</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.nombre</td>
+                                        <td>@item.apellido</td>
+                                        <td>@item.correoElectronico</td>
+                                        <td>@item.numTelefonico</td>
+                                        <td>@item.lugarNacimiento</td>
+                                        <td>
+                                            <div class="btn-group" role="group" aria-label="Acciones">
+                                                <form asp-action="GetEdit" asp-route-id="@item.id" method="post" asp-area="" style="display:inline;">
+                                                    <button type="submit" class="btn btn-warning btn-sm">Editar</button>
+                                                </form>
+                                                <form asp-action="Delete" asp-route-id="@item.id" method="post" asp-area="" style="display:inline;">
+                                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Crear Nuevo -->
+<div class="modal fade" id="modalCrearNuevo" tabindex="-1" role="dialog" aria-labelledby="modalCrearNuevoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalCrearNuevoLabel">Crear Nuevo Aspirante</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- PartialView para el formulario de creación -->
+                <div id="crearAspiranteForm"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#btnCrearNuevo').click(function () {
+                // Cargar el PartialView en el modal para crear un nuevo aspirante
+                $('#modalCrearNuevo').modal('show');
+                $('#crearAspiranteForm').load('@Url.Action("CreateForm", "Aspirante")');
+            });
+        });
+    </script>
+}
+

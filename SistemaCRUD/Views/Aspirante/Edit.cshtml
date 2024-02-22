@@ -1,0 +1,49 @@
+﻿@model SistemaCRUD.Models.Aspirante
+
+<div class=" card text-primary">
+    <div class="card-header text-center">
+        <h5>Editar Aspirante</h5>
+    </div>
+    <div class=" card-body text-primary">
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Edit" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="id" />
+                    <div class="form-group">
+                        <label asp-for="nombre" class="control-label"></label>
+                        <input asp-for="nombre" class="form-control" />
+                        <span asp-validation-for="nombre" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="apellido" class="control-label"></label>
+                        <textarea asp-for="apellido" class="form-control"></textarea>
+                        <span asp-validation-for="apellido" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="correoElectronico" class="control-label"></label>
+                        <input asp-for="correoElectronico" class="form-control" />
+                        <span asp-validation-for="correoElectronico" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="numTelefonico" class="control-label"></label>
+                        <input asp-for="numTelefonico" class="form-control" />
+                        <span asp-validation-for="numTelefonico" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="lugarNacimiento" class="control-label"></label>
+                        <input asp-for="lugarNacimiento" class="form-control" />
+                        <span asp-validation-for="lugarNacimiento" class="text-danger"></span>
+                    </div>
+                    <div class=" card-footer text-center">
+                        <div class="form-group">
+                            <input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
+                            <a asp-action="Index" class="btn btn-outline-success btn-sm">Volver a la lista</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
